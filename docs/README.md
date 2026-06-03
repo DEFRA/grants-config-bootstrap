@@ -1,4 +1,4 @@
-## Adding Grant Configuration
+## Grant Configuration
 
 ### Creating a New Grant
 
