@@ -1,0 +1,35 @@
+{
+  "scripts": {
+    "github:release": "npx cdp-github-release $TARGET_REPO_NAME$",
+    "version:changed": "changeset version",
+    "version": "changeset"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEFRA/$TARGET_REPO_NAME$.git"
+  },
+  "release-it": {
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": true,
+      "releaseName": "${version}",
+      "releaseNotes": "echo ''"
+    },
+    "git": {
+      "commitMessage": "Tagged $TARGET_REPO_NAME$ ${version}",
+      "tagName": "${version}",
+      "requireCleanWorkingDir": false,
+      "commitArgs": [
+        "--no-verify"
+      ]
+    }
+  },
+  "bin": {
+    "cdp-github-release": "ci/release-it.sh"
+  }
+}
