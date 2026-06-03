@@ -17,3 +17,6 @@ Tasks:
 3. Setup changesets
    a. initialise changeset using npx
    b. add bootstrap's ./changeset/pr-changeset-check.yml to ./.github/workflows/
+4. Setup husky
+   a. npm run setup:husky
+   b. append bootstrap's ./husky/pre-commit to ./.husky/pre-commit
