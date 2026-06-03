@@ -13,4 +13,4 @@ Tasks:
 2. Update package.json
    a. npm install dev dependencies, @changesets/cli @changesets/changelog-github.
    b. npm install dependencies using min-release-age=0, @defra/grants-config-utils.
-   C. add bootstrap's ./npm/package.json to ./package.json, keeping existing scripts, replacing $TARGET_REPO_NAME$ with name field. 
+   C. add bootstrap's ./npm/package.json to ./package.json, keeping existing scripts, replacing $TARGET_REPO_NAME$ with name field, new fields added to end of section.
