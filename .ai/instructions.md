@@ -20,3 +20,6 @@ Tasks:
 4. Setup husky
    a. npm run setup:husky
    b. append bootstrap's ./husky/pre-commit to ./.husky/pre-commit
+5. Update service publishing
+   a. Copy bootstrap's ./publish/release-it.sh to ./ci/release-it.sh, grant execute permissions
+   b. Merge the snippets from bootstrap's ./publish/publish.yml into ./.github/workflows/publish.yml, note bootstrap's 'Build and Publish to CDP' should be mapped to 'Build and Publish'
