@@ -21,5 +21,12 @@ Tasks:
    a. npm run setup:husky
    b. append bootstrap's ./husky/pre-commit to ./.husky/pre-commit
 5. Update service publishing
-   a. Copy bootstrap's ./publish/release-it.sh to ./ci/release-it.sh, grant execute permissions
-   b. Merge the snippets from bootstrap's ./publish/publish.yml into ./.github/workflows/publish.yml
+   a. copy bootstrap's ./publish/release-it.sh to ./ci/release-it.sh, grant execute permissions
+   b. merge the snippets from bootstrap's ./publish/publish.yml into ./.github/workflows/publish.yml
+6. Make changes to support configuration repo
+   a. create directory ./configurations
+7. Configure for local running 
+   a. update aws.env AWS_ENDPOINT_URL, swap localhost for floci
+   b. merge the snippets from bootstrap's ./local-running/compose.yml into ./compose.yml, note bootstrap's $TARGET_REPO_SPECIFIC$ signifies a variable
+   c. update 10-setup-resources.sh, add configs-bucket create command
+   d. merge the snippets from bootstrap's ./local-running/Dockerfile into ./Dockerfile

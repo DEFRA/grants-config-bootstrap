@@ -1,0 +1,5 @@
+services:
+  grants-config-$TARGET_REPO_SPECIFIC$:
+    volumes:
+      - ./configurations:/home/node/configurations
+      - ./.env:/home/node/.env
