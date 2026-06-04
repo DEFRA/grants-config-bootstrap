@@ -34,4 +34,5 @@ Tasks:
    c. update 10-setup-resources.sh, add configs-bucket create command
    d. merge the snippets from bootstrap's ./local-running/Dockerfile into ./Dockerfile
    e. copy bootstrap's ./local-running/start to ./scripts/start, grant execute permissions
+   f. copy bootstrap's ./local-running/.env to ./.env
 8. Update sonar-project.properties to exclude src/index.js and src/routes/health.js
