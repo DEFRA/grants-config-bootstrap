@@ -1,40 +1,415 @@
-# AI Prompt configuration bootstrap
+# AI Prompt: Convert Repository into a Grant Configuration Repository
 
-Use this prompt from within the target repository to apply the changes required to make it a grant configuration repository.
-
----
-
-Compare this repository with the bootstrap repository:
+Use the current repository as the target repository and compare it with:
 
 https://github.com/DEFRA/grants-config-bootstrap
 
-Tasks:
-1. Use git to checkout main, pull latest changes and create branch.
-2. Add bootstrap's ./docs/README.md to ./README.md, put 'Grant Configuration' as the first section, but after section links.
-3. The package.json updated by completing subtasks
-   - npm install dev dependencies, @changesets/cli @changesets/changelog-github.
-   - npm install dependency using min-release-age=0, @defra/grants-config-utils.
-   - add bootstrap's ./npm/package.json to ./package.json, keeping existing scripts, replacing $TARGET_REPO_NAME$ with name field, new fields added to end of section.
-4. Setup changesets by completing subtasks
-   - initialise changeset using npx
-   - add bootstrap's ./changeset/pr-changeset-check.yml to ./.github/workflows/
-5. Setup husky by completing subtasks
-   - npm run setup:husky
-   - append bootstrap's ./husky/pre-commit to ./.husky/pre-commit
-6. Update service publishing by completing subtasks
-   - copy bootstrap's ./publish/release-it.sh to ./ci/release-it.sh, grant execute permissions
-   - merge the snippets from bootstrap's ./publish/publish.yml into ./.github/workflows/publish.yml, don't replace the name field
-7. Make code changes to support configuration repo by completing subtasks
-   - create directory ./configurations
-   - remove ./src/routes/example.js and its usages
-   - merge storeConfigVersionAndInformBroker from bootstrap's ./code-changes/start-server.js into ./src/common/start-server.js
-   - merge storeConfigVersionAndInformBroker from bootstrap's ./code-changes/start-server.test.js into ./src/common/start-server.test.js
-8. Configure for local running by completing subtasks
-   - update aws.env AWS_ENDPOINT_URL, swap localhost for floci
-   - merge the snippets from bootstrap's ./local-running/compose.yml into ./compose.yml, note bootstrap's $TARGET_REPO_SPECIFIC$ signifies a variable
-   - update 10-setup-resources.sh, add configs-bucket create command
-   - merge the snippets from bootstrap's ./local-running/Dockerfile into ./Dockerfile
-   - copy bootstrap's ./local-running/start to ./scripts/start, grant execute permissions
-   - copy bootstrap's ./local-running/.env to ./.env
-9. Update sonar-project.properties to exclude src/index.js and src/routes/health.js
-10. Push all changes remote branch and create pull request.
+## Working Rules
+
+* Clone or fetch the latest version of the bootstrap repository for comparison.
+* Preserve existing repository functionality unless explicitly instructed otherwise.
+* When merging content:
+
+    * Retain existing target-repository content.
+    * Add bootstrap content where missing.
+    * Avoid duplicate entries.
+    * If a conflict exists, prefer bootstrap implementation unless repository-specific behaviour would be lost.
+* Maintain the existing formatting and code style.
+* Run validation steps after each major change where applicable.
+* Record all modifications in git.
+
+---
+
+## 1. Create Working Branch
+
+1. Checkout `main`
+2. Pull the latest changes
+3. Create a new feature branch named:
+
+   feat/bootstrap-grant-configuration
+
+---
+
+## 2. Documentation Updates
+
+### README
+
+1. Compare:
+
+    * `README.md`
+    * `bootstrap/docs/README.md`
+
+2. Merge content into the target `README.md` using the following rules:
+
+    * Keep existing section links.
+    * Add a new section link named **Grant Configuration**.
+    * Place **Grant Configuration** as the first section link.
+    * Insert the Grant Configuration content immediately after the section links.
+    * Preserve all existing repository-specific documentation.
+
+---
+
+## 3. Package Configuration
+
+### Dev Dependencies
+
+Install:
+
+```bash
+npm install -D @changesets/cli @changesets/changelog-github
+```
+
+### Runtime Dependency
+
+Install:
+
+```bash
+npm install --min-release-age=0 @defra/grants-config-utils
+```
+
+### package.json Merge
+
+Merge fields from:
+
+```text
+bootstrap/npm/package.json
+```
+
+Rules:
+
+* Keep all existing scripts.
+* Replace `$TARGET_REPO_NAME$` with the repository `name` field value.
+* Append any new fields to the end of their respective sections.
+* Do not remove repository-specific configuration.
+
+---
+
+## 4. Changesets
+
+1. Initialise Changesets:
+
+```bash
+npx changeset init
+```
+
+2. Copy:
+
+```text
+bootstrap/changeset/pr-changeset-check.yml
+```
+
+to:
+
+```text
+.github/workflows/pr-changeset-check.yml
+```
+
+3. Create an initial changeset describing the bootstrap migration, minor change, run:
+
+```bash
+npm run version
+```
+
+---
+
+## 5. Husky
+
+1. Run:
+
+```bash
+npm run setup:husky
+```
+
+2. Merge bootstrap content from:
+
+```text
+bootstrap/husky/pre-commit
+```
+
+into:
+
+```text
+.husky/pre-commit
+```
+
+Rules:
+
+* Avoid duplicate commands.
+* Preserve existing hooks.
+
+---
+
+## 6. Release and Publishing
+
+### Release Script
+
+Copy:
+
+```text
+bootstrap/publish/release-it.sh
+```
+
+to:
+
+```text
+ci/release-it.sh
+```
+
+Then:
+
+```bash
+chmod +x ci/release-it.sh
+```
+
+### Publish Workflow
+
+Merge bootstrap workflow content from:
+
+```text
+bootstrap/publish/publish.yml
+```
+
+into:
+
+```text
+.github/workflows/publish.yml
+```
+
+Rules:
+
+* Keep the existing workflow name.
+* Preserve repository-specific jobs.
+* Add any missing bootstrap jobs, steps, permissions, and environment variables.
+
+---
+
+## 7. Grant Configuration Code Changes
+
+### Repository Structure
+
+Create:
+
+```text
+configurations/
+```
+
+Copy:
+
+```text
+bootstrap/code-changes/REMOVE.txt
+```
+
+to:
+
+```text
+configurations/REMOVE.txt
+```
+
+### Remove Example Route
+
+Delete:
+
+```text
+src/routes/example.js
+```
+
+Remove all references, imports, registrations, tests, and documentation related to this route.
+
+### start-server.js
+
+Merge:
+
+```text
+bootstrap/code-changes/start-server.js
+```
+
+into:
+
+```text
+src/common/start-server.js
+```
+
+Specifically add:
+
+```text
+storeConfigVersionAndInformBroker
+```
+
+and all required supporting code.
+
+### start-server.test.js
+
+Merge equivalent bootstrap test coverage from:
+
+```text
+bootstrap/code-changes/start-server.test.js
+```
+
+into:
+
+```text
+src/common/start-server.test.js
+```
+
+Ensure all new functionality is tested.
+
+---
+
+## 8. Local Development Configuration
+
+### AWS Environment
+
+Update:
+
+```text
+aws.env
+```
+
+Replace:
+
+```text
+localhost
+```
+
+with:
+
+```text
+floci
+```
+
+for `AWS_ENDPOINT_URL`.
+
+### Docker Compose
+
+Merge bootstrap additions from:
+
+```text
+bootstrap/local-running/compose.yml
+```
+
+into:
+
+```text
+compose.yml
+```
+
+Rules:
+
+* Treat `$TARGET_REPO_SPECIFIC$` as a repository-specific placeholder requiring implementation.
+* Preserve existing services.
+
+### Local AWS Resources
+
+Update:
+
+```text
+10-setup-resources.sh
+```
+
+Add creation of:
+
+```text
+configs-bucket
+```
+
+### Dockerfile
+
+Merge bootstrap additions from:
+
+```text
+bootstrap/local-running/Dockerfile
+```
+
+into:
+
+```text
+Dockerfile
+```
+
+### Start Script
+
+Copy:
+
+```text
+bootstrap/local-running/start
+```
+
+to:
+
+```text
+scripts/start
+```
+
+and make executable.
+
+### Environment File
+
+Copy:
+
+```text
+bootstrap/local-running/.env
+```
+
+to:
+
+```text
+.env
+```
+
+---
+
+## 9. Sonar Configuration
+
+Update:
+
+```text
+sonar-project.properties
+```
+
+Ensure exclusions include:
+
+```text
+src/index.js
+src/routes/health.js
+```
+
+---
+
+## 10. Validation
+
+Run and fix any issues:
+
+```bash
+npm install
+npm run lint:fix && npm run format
+npm test
+```
+
+If available:
+
+```bash
+npm run test:coverage
+```
+
+Ensure all tests pass.
+
+---
+
+## 11. Commit, Push, and PR
+
+1. Commit all changes with a meaningful commit message.
+2. Push the feature branch.
+3. Create a pull request targeting `main`.
+
+Suggested commit message and PR title:
+
+```text
+feat: add grant configuration support
+```
+
+Include:
+
+* Summary of migrated bootstrap features
+* Configuration changes
+* Testing performed
+* Any manual follow-up actions that are required
