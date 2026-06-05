@@ -106,6 +106,10 @@ to:
 .github/workflows/pr-changeset-check.yml
 ```
 
+Rules:
+
+* The changeset file created must follow naming conventions. Example: initial-boot-strap.md
+
 ---
 
 ## 5. Husky
