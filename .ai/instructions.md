@@ -92,7 +92,9 @@ Rules:
 npx changeset init
 ```
 
-2. Copy:
+2. Create an initial changeset by writing a markdown file into .changeset/ rather than running the interactive npx changeset command. Use the repository package name and set the release type to minor with the summary "Convert repository to grant configuration bootstrap
+
+3. Copy:
 
 ```text
 bootstrap/changeset/pr-changeset-check.yml
@@ -102,12 +104,6 @@ to:
 
 ```text
 .github/workflows/pr-changeset-check.yml
-```
-
-3. Create an initial changeset describing the bootstrap migration, minor change, run:
-
-```bash
-npm run version
 ```
 
 ---
@@ -136,6 +132,7 @@ Rules:
 
 * Avoid duplicate commands.
 * Preserve existing hooks.
+* Add new code after the existing code.
 
 ---
 
@@ -372,6 +369,10 @@ Ensure exclusions include:
 src/index.js
 src/routes/health.js
 ```
+
+Rules:
+
+* Add without spaces.
 
 ---
 
