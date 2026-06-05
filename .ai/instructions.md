@@ -400,13 +400,22 @@ Ensure all tests pass.
 
 ---
 
-## 11. Commit, Push, and PR
+## 11. Stage, commit, and push to remote
 
-1. Commit all changes with a meaningful commit message.
+1. Stage and commit all changes with a meaningful commit message.
 2. Push the feature branch.
-3. Create a pull request targeting `main`.
 
-Suggested commit message and PR title:
+Suggested commit message:
+
+```text
+feat: add grant configuration support
+```
+
+## 12. Create GitHub PR
+
+1. Create a pull request for this branch targeting `main` in GitHub.
+
+Suggested PR title:
 
 ```text
 feat: add grant configuration support
