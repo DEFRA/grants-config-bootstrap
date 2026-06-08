@@ -92,7 +92,7 @@ Rules:
 npx changeset init
 ```
 
-2. Create an initial changeset by writing a markdown file into .changeset/ rather than running the interactive npx changeset command. Use the repository package name and set the release type to minor with the summary "Add grant configuration support to repository"
+2. Create an initial changeset by writing a markdown file into .changeset/ rather than running the interactive npx changeset command. Use the repository package name and set the release type to minor with the summary "Add grant configuration support to the repository"
 
 3. Copy:
 
