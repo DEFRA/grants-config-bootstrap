@@ -1,6 +1,11 @@
 run-name: ${{ github.event.inputs.run_name || github.event.head_commit.message || 'Publish' }}
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'configurations/**'
   workflow_dispatch:
     inputs:
       run_name:
