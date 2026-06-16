@@ -43,6 +43,7 @@ https://github.com/DEFRA/grants-config-bootstrap
 
     * Keep existing section links.
     * Add a new section link named **Grant Configuration**.
+    * Add three child section links to **Grant Configuration**, named: **Create new**, **Update existing** and **Non-configuration changes**.
     * Place **Grant Configuration** as the first section link.
     * Insert the Grant Configuration content immediately after the section links.
     * Preserve all existing repository-specific documentation.

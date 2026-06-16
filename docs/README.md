@@ -1,6 +1,6 @@
 ## Grant Configuration
 
-### Creating a New Grant
+### Create new
 
 Each directory within the `configurations` folder represents a separate grant.
 
@@ -37,7 +37,7 @@ To create a new grant:
    git push
    ```
 
-### Updating an Existing Grant
+### Update existing
 
 To update the configuration for an existing grant:
 
@@ -61,3 +61,9 @@ To update the configuration for an existing grant:
    ```bash
    git push
    ```
+
+### Non-configuration changes
+
+Any change that does not modify the contents of the `configurations` directory is considered a **non-configuration change**.
+
+Do **not** create a changeset for these changes. Non-configuration changes do not trigger service publication when merged into `main`.
