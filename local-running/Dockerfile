@@ -1,3 +1,3 @@
-COPY --chown=node:node ./configurations ./configurations
+COPY --chown=node:node --chmod=755 ./configurations ./configurations
 
 COPY --from=development /home/node/configurations ./configurations/
