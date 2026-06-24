@@ -181,6 +181,7 @@ Rules:
 
 * Keep the existing workflow name.
 * Preserve repository-specific jobs.
+* Pay close attention to the `uses`, bootstrap versions should be used
 * Add any missing bootstrap jobs, steps, permissions, and environment variables.
 
 ### Publish Hotfix Workflow
@@ -201,6 +202,7 @@ Rules:
 
 * Keep the existing workflow name.
 * Preserve repository-specific jobs.
+* Pay close attention to the `uses`, bootstrap versions should be used
 * Add any missing bootstrap jobs, steps, permissions, and environment variables.
 
 ---
