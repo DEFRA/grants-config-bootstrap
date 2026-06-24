@@ -68,7 +68,7 @@ Any change that does not modify the contents of the `configurations` directory i
 
 Do **not** create a changeset for these changes. Non-configuration changes do not trigger service publication when merged into `main`.
 
-### Hotfix Releases
+### Hotfix releases
 
 Hotfix releases should only be used as a last resort when a fix cannot be delivered through the normal release process because subsequent releases contain incompatible changes.
 
@@ -100,8 +100,7 @@ If a hotfix is required, complete the following steps:
    **Note:** This workflow only runs on branches with the `hotfix-releases/` prefix.
 
    The workflow will:
-
-   * Publish the new patch version.
-   * Remove the generated changeset file.
+   - Publish the new patch version.
+   - Remove the generated changeset file.
 
    The workflow requires a `description` input, which is used as part of the workflow run name.
