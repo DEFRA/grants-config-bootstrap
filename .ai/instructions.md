@@ -183,6 +183,26 @@ Rules:
 * Preserve repository-specific jobs.
 * Add any missing bootstrap jobs, steps, permissions, and environment variables.
 
+### Publish Hotfix Workflow
+
+Merge bootstrap workflow content from:
+
+```text
+bootstrap/publish/publish-hotfix.yml
+```
+
+into:
+
+```text
+.github/workflows/publish-hotfix.yml
+```
+
+Rules:
+
+* Keep the existing workflow name.
+* Preserve repository-specific jobs.
+* Add any missing bootstrap jobs, steps, permissions, and environment variables.
+
 ---
 
 ## 7. Grant Configuration Code Changes
@@ -251,6 +271,20 @@ into:
 
 ```text
 src/common/start-server.test.js
+```
+
+### logger-options.test.js
+
+Copy:
+
+```text
+bootstrap/code-changes/logger-options.test.js
+```
+
+to:
+
+```text
+src/plugins/logger-options.test.js
 ```
 
 Ensure all new functionality is tested.
